@@ -1,0 +1,405 @@
+//---------------------------------------------------------------------
+// 2024.3.4 월 (1 / 1)
+// 기본 컴파일 환경
+// 17.9 이상의 visual studio
+// Release/x64, project 속성 - std:: c++ latest
+// 콘솔창 크기 :80? 85?  너비: 25
+// 1주차 - 소스파일 save 기능
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <string_view>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+void save(string_view);
+
+int main()
+{
+	cout << "2024 STL" << endl;
+
+	save("FileName.cpp");
+}
+
+void save(string_view filename)
+{
+	// 읽을 파일을 연다
+	ifstream in{ filename.data() };
+
+	if (!in) {
+		cout << "파일을 열지 못함" << endl;
+		exit(0);
+	}
+
+	// 쓸 파일을 덧붙이기 모드로 연다
+	
+	ofstream out("2024 1 월56목78 강의저장.txt", ios::app);
+
+	// 읽을 파일의 모든 내용을 읽어 쓸 파일에 덧붙인다.
+
+	vector<char> v{ istreambuf_iterator<char>{in},{} };
+	
+	copy(v.begin(), v.end(), ostreambuf_iterator<char>{out});
+}//---------------------------------------------------------------------
+// 2024.3.4 월 (1 / 1)
+// 기본 컴파일 환경
+// 17.9 이상의 visual studio
+// Release/x64, project 속성 - std:: c++ latest
+// 콘솔창 크기 :80? 85?  너비: 25
+// 1주차 - 소스파일 save 기능
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <string_view>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+void save(string_view);
+
+int main()
+{
+	cout << "2024 STL" << endl;
+
+	save("FileName.cpp");
+}
+
+void save(string_view filename)
+{
+	// 읽을 파일을 연다
+	ifstream in{ filename.data() };
+
+	if (!in) {
+		cout << "파일을 열지 못함" << endl;
+		exit(0);
+	}
+
+	// 쓸 파일을 덧붙이기 모드로 연다
+	
+	ofstream out("2024 1 월56목78 강의저장.txt", ios::app);
+
+	// 읽을 파일의 모든 내용을 읽어 쓸 파일에 덧붙인다.
+
+	vector<char> v{ istreambuf_iterator<char>{in},{} };
+	
+	copy(v.begin(), v.end(), ostreambuf_iterator<char>{out});
+}//---------------------------------------------------------------------
+// 2024.3.4 월 (1 / 1)
+// 기본 컴파일 환경
+// 17.9 이상의 visual studio
+// Release/x64, project 속성 - std:: c++ latest
+// 콘솔창 크기 :80? 85?  너비: 25
+// 1주차 - 소스파일 save 기능
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <string_view>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+#include <chrono>
+using namespace std;
+
+void save(string_view);
+
+int main()
+{
+	cout << "2024 STL" << endl;
+
+	save("FileName.cpp");
+}
+
+void save(string_view filename)
+{
+	// 읽을 파일을 연다
+	ifstream in{ filename.data() };
+
+	if (!in) {
+		cout << "파일을 열지 못함" << endl;
+		exit(0);
+	}
+
+	// 쓸 파일을 덧붙이기 모드로 연다
+	
+	ofstream out("2024 1 월56목78 강의저장.txt", ios::app);
+
+	// 저장된 시간을 파일에 기록한다
+
+	auto now = chrono::system_clock::now();
+	cout << now << endl;
+	//auto time = chrono::system_clock::to_time_t(now); // utc 시간으로 변환
+	//auto lt = localtime(&time);		// 현지 시간으로 변환
+
+	// 읽을 파일의 모든 내용을 읽어 쓸 파일에 덧붙인다.
+
+	vector<char> v{ istreambuf_iterator<char>{in},{} };
+	
+	copy(v.begin(), v.end(), ostreambuf_iterator<char>{out});
+}
+
+===================================
+FileName.cpp, 저장 시간: 2024-03-04 월요일 오후 2:56:42
+===================================
+//---------------------------------------------------------------------
+// 2024.3.4 월 (1 / 1)
+// 기본 컴파일 환경
+// 17.9 이상의 visual studio
+// Release/x64, project 속성 - std:: c++ latest, SDL - no
+// 콘솔창 크기 :80? 85?  너비: 25
+// 1주차 - 소스파일 save 기능
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <string>
+#include <string_view>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+#include <chrono>
+using namespace std;
+
+void save(string_view);
+
+int main()
+{
+	cout << "2024 STL" << endl;
+
+	save("FileName.cpp");
+}
+
+void save(string_view filename)
+{
+	// 읽을 파일을 연다
+	ifstream in{ filename.data() };
+
+	if (!in) {
+		cout << "파일을 열지 못함" << endl;
+		exit(0);
+	}
+
+	// 쓸 파일을 덧붙이기 모드로 연다
+	
+	ofstream out("2024 1 월56목78 강의저장.txt", ios::app);
+
+	// 저장된 시간을 파일에 기록한다
+
+	auto now = chrono::system_clock::now();
+	auto time = chrono::system_clock::to_time_t(now); // utc 시간으로 변환
+	auto lt = localtime(&time);		// 현지 시간으로 변환
+	auto old = out.imbue(locale("ko_KR"));
+	out << endl << endl;
+	out << "===================================" << endl;
+	out << filename << put_time(lt, ", 저장 시간: %x %A %X") << endl;
+	out << "===================================" << endl;
+	out.imbue(old);
+	// 읽을 파일의 모든 내용을 읽어 쓸 파일에 덧붙인다.
+
+	vector<char> v{ istreambuf_iterator<char>{in},{} };
+	
+	copy(v.begin(), v.end(), ostreambuf_iterator<char>{out});
+}
+
+===================================
+save.h, 저장 시간: 2024-03-07 목요일 오후 3:39:57
+===================================
+//-----------------------------------------------------------
+// save.h	한 학기 강의를 저장한다
+// 
+// 2024.03.07 
+//-----------------------------------------------------------
+
+#pragma once
+#include <string_view>
+
+void save(std::string_view );
+
+===================================
+save.cpp, 저장 시간: 2024-03-07 목요일 오후 3:39:57
+===================================
+//-----------------------------------------------------------
+// save.cpp		한 학기 강의를 저장한다.
+// 
+// 2024.03.07
+//-----------------------------------------------------------
+#include <string_view>
+#include <fstream>
+#include <iostream>
+#include <chrono>
+#include <vector>
+#include <algorithm>
+
+#include "save.h"
+
+
+void save(std::string_view filename)
+{
+	// 읽을 파일을 연다
+	std::ifstream in{ filename.data() };
+
+	if (!in) {
+		std::cout << "파일을 열지 못함" << '\n';
+		exit(0);
+	}
+
+	// 쓸 파일을 덧붙이기 모드로 연다
+
+	std::ofstream out("2024 1 월56목78 강의저장.txt", std::ios::app);
+
+	// 저장된 시간을 파일에 기록한다
+
+	auto now = std::chrono::system_clock::now();
+	auto time = std::chrono::system_clock::to_time_t(now); // utc 시간으로 변환
+	auto lt = localtime(&time);		// 현지 시간으로 변환
+	auto old = out.imbue(std::locale("ko_KR"));
+	out << '\n' << '\n';
+	out << "===================================" << '\n';
+	out << filename << std::put_time(lt, ", 저장 시간: %x %A %X") << '\n';
+	out << "===================================" << '\n';
+	out.imbue(old);
+	// 읽을 파일의 모든 내용을 읽어 쓸 파일에 덧붙인다.
+
+	std::vector<char> v{ std::istreambuf_iterator<char>{in},{} };
+
+	copy(v.begin(), v.end(), std::ostreambuf_iterator<char>{out});
+}
+
+===================================
+FileName.cpp, 저장 시간: 2024-03-07 목요일 오후 3:39:57
+===================================
+//---------------------------------------------------------------------
+// 2024.3.7 목											    (1주 / 2일)
+// 
+// 1주차 - 소스파일 save 기능
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+
+int main()
+{
+	save("save.h");
+	save("save.cpp");
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-07 목요일 오후 3:42:15
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.7 목											    (1주 / 2일)
+// 
+// 1주차 - 소스파일 save 기능
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+
+int main()
+{
+	save("FileName.cpp");
+}
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-07 목요일 오후 3:46:35
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.7 목		                                        (1주 / 2일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+void change(int&, int&);
+// [문제] main()을 변경하면 안된다. 함수 change()를 선언하고 정의하라
+int main()
+{
+	int a{ 1 }, b{ 2 };
+
+	change(a, b);
+	cout << a << ", " << b << endl;    // [출력] 2,1
+
+	save("FileName.cpp");
+}
+void change(int& a, int& b)
+{
+	int temp{ a };
+	a = b;
+	b = temp;
+}
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-07 목요일 오후 4:47:40
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.7 목		                                        (1주 / 2일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+// [문제] main()을 변경하면 안된다. 함수 change()를 선언하고 정의하라
+
+class Dog;	// 전방 선언,forward declaration
+
+void change(int&, int&);
+void change(Dog&, Dog&);
+
+class Dog {
+public:
+	Dog(int a) : num{ a } {};
+	// Dog(const Dog& other) -> special 함수 (컴파일러 자동생성)
+	friend ostream& operator<<(ostream& os, const Dog& dog) {
+		return os << dog.num;
+	}
+private:
+	int num;
+};
+
+
+
+
+int main()
+{
+	Dog a{ 1 }, b{ 2 };
+
+	change(a, b);
+	cout << a << ", " << b << endl;    // [출력] 2,1
+
+	save("FileName.cpp");
+}
+
+void change(int& a, int& b)
+{
+	int temp{ a };
+	a = b;
+	b = temp;
+}
+void change(Dog& a, Dog& b)
+{
+	Dog temp{ a };  // copy construction
+	a = b;
+	b = temp;
+}
