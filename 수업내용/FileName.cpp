@@ -1,54 +1,25 @@
 //---------------------------------------------------------------------
-// 2024.3.7 목		                                        (1주 / 2일)
+// 2024.3.11 월		                                        (2주 / 1일)
 // 
 // C++ 복습
 //---------------------------------------------------------------------
 
 #include <iostream>
+#include <fstream>
+#include <algorithm>
 #include "save.h"
 using namespace std;
 
-// [문제] main()을 변경하면 안된다. 함수 change()를 선언하고 정의하라
-
-class Dog;	// 전방 선언,forward declaration
-
-template<class T>
-void change(T&, T&);
-
-class Dog {
-public:
-	Dog(int a) : num{ a } {};
-	// Dog(const Dog& other) -> special 함수 (컴파일러 자동생성)
-
-	/*friend ostream& operator<<(ostream& os, const Dog& dog) {
-		return os << dog.num;
-	}*/
-
-	operator int() {
-		return num;
-	}
-
-private:
-	int num;
-};
-
-
-
+// 문제 - 파일 "int천개.txt"에는 int값 1000개가 숫자값 그대로 기록되어 있다.
+// 값과 값은 공백으로 떨어져 있다.
+// 가장 큰 값을 찾아 화면에 출력하라
 
 int main()
 {
-	Dog a{ 1 }, b{ 2 };
-
-	change(a, b);
-	cout << a << ", " << b << endl;    // [출력] 2,1
-
+	ifstream in("int천개.txt");
+	if (!in)
+		exit(0);
+	cout << "최댓값은 " << *max_element(istream_iterator<int>{in}, {});
 	save("FileName.cpp");
 }
 
-template<class T>
-void change(T& a, T& b)
-{
-	T temp{ a };  // copy construction
-	a = b;
-	b = temp;
-}

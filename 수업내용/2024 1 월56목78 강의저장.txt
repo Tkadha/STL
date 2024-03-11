@@ -403,3 +403,759 @@ void change(Dog& a, Dog& b)
 	a = b;
 	b = temp;
 }
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 1:32:51
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.7 목		                                        (1주 / 2일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+// [문제] main()을 변경하면 안된다. 함수 change()를 선언하고 정의하라
+
+class Dog;	// 전방 선언,forward declaration
+
+template<class T>
+void change(T&, T&);
+
+class Dog {
+public:
+	Dog(int a) : num{ a } {};
+	// Dog(const Dog& other) -> special 함수 (컴파일러 자동생성)
+
+	/*friend ostream& operator<<(ostream& os, const Dog& dog) {
+		return os << dog.num;
+	}*/
+
+	operator int() {
+		return num;
+	}
+
+private:
+	int num;
+};
+
+
+
+
+int main()
+{
+	Dog a{ 1 }, b{ 2 };
+
+	change(a, b);
+	cout << a << ", " << b << endl;    // [출력] 2,1
+
+	save("FileName.cpp");
+}
+
+template<class T>
+void change(T& a, T& b)
+{
+	T temp{ a };  // copy construction
+	a = b;
+	b = temp;
+}
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 1:50:41
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+// 문제 - [0,99999] 값을 갖는 int 100개를 만들자.
+// 값이 가장 큰 수를 찾아 화면에 출력하라.
+
+	int a[100];
+int main()
+{
+
+	for (int num : a) 
+		cout << num << '\t';
+
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 1:50:51
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+// 문제 - [0,99999] 값을 갖는 int 100개를 만들자.
+// 값이 가장 큰 수를 찾아 화면에 출력하라.
+
+int main()
+{
+	int a[100];
+
+	for (int num : a) 
+		cout << num << '\t';
+
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 1:51:51
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+// 문제 - [0,99999] 값을 갖는 int 100개를 만들자.
+// 값이 가장 큰 수를 찾아 화면에 출력하라.
+
+int main()
+{
+	int a[100]{};
+
+	for (int num : a) 
+		cout << num << '\t';
+
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 1:55:06
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include "save.h"
+using namespace std;
+
+// 문제 - [0,99999] 값을 갖는 int 100개를 만들자.
+// 값이 가장 큰 수를 찾아 화면에 출력하라.
+
+default_random_engine dre;
+uniform_int_distribution uid{ 0,99999 };
+
+int main()
+{
+	int a[100];
+	for (int& num : a)
+		num = uid(dre);
+	for (int num : a) 
+		cout << num << '\t';
+
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 1:57:55
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <format>
+#include "save.h"
+using namespace std;
+
+// 문제 - [0,99999] 값을 갖는 int 100개를 만들자.
+// 값이 가장 큰 수를 찾아 화면에 출력하라.
+
+default_random_engine dre;
+uniform_int_distribution uid{ 0,99999 };
+
+int main()
+{
+	int a[100];
+	for (int& num : a)
+		num = uid(dre);
+	for (int num : a)
+		cout << format("{:8d}",num);
+
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 1:58:47
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <format>
+#include "save.h"
+using namespace std;
+
+// 문제 - [0,99999] 값을 갖는 int 100개를 만들자.
+// 값이 가장 큰 수를 찾아 화면에 출력하라.
+
+default_random_engine dre;
+uniform_int_distribution uid{ 0,99999 };
+
+int main()
+{
+	int a[100];
+	for (int& num : a)
+		num = uid(dre);
+	for (int num : a)
+		cout << format("{:^8d}",num);
+
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 1:59:11
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <format>
+#include "save.h"
+using namespace std;
+
+// 문제 - [0,99999] 값을 갖는 int 100개를 만들자.
+// 값이 가장 큰 수를 찾아 화면에 출력하라.
+
+default_random_engine dre;
+uniform_int_distribution uid{ 0,99999 };
+
+int main()
+{
+	int a[100];
+	for (int& num : a)
+		num = uid(dre);
+	for (int num : a)
+		cout << format("{:^8d}",num);
+
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 1:59:22
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <format>
+#include "save.h"
+using namespace std;
+
+// 문제 - [0,99999] 값을 갖는 int 100개를 만들자.
+// 값이 가장 큰 수를 찾아 화면에 출력하라.
+
+default_random_engine dre;
+uniform_int_distribution uid{ 0,99999 };
+
+int main()
+{
+	int a[100];
+	for (int& num : a)
+		num = uid(dre);
+	for (int num : a)
+		cout << format("{:^80d}",num);
+
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 2:00:10
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <format>
+#include <print>
+#include "save.h"
+using namespace std;
+
+// 문제 - [0,99999] 값을 갖는 int 100개를 만들자.
+// 값이 가장 큰 수를 찾아 화면에 출력하라.
+
+default_random_engine dre;
+uniform_int_distribution uid{ 0,99999 };
+
+int main()
+{
+	int a[100];
+	for (int& num : a)
+		num = uid(dre);
+	for (int num : a)
+		print("{:8d}",num);
+
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 2:05:12
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <format>
+#include <print>
+#include "save.h"
+using namespace std;
+
+// 문제 - [0,99999] 값을 갖는 int 100개를 만들자.
+// 값이 가장 큰 수를 찾아 화면에 출력하라.
+
+default_random_engine dre;
+uniform_int_distribution uid{ 0,99999 };
+
+int main()
+{
+	int a[100];
+	for (int& num : a)
+		num = uid(dre);
+
+	for (int num : a)
+		print("{:8d}",num);		//c++ 23
+
+	// 가장 큰 값을 찾아 화면에 출력하라
+	int max{ -1 };
+	for (int num : a)
+		if (num > max) max = num;
+	cout << max;
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 2:10:18
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <format>
+#include <print>
+#include "save.h"
+using namespace std;
+
+// 문제 - [0,99999] 값을 갖는 int 100개를 만들자.
+// 값이 가장 큰 수를 찾아 화면에 출력하라.
+
+default_random_engine dre;
+uniform_int_distribution uid{ 0,99999 };
+
+int main()
+{
+	int a[100];
+	for (int& num : a)
+		num = uid(dre);
+
+	for (int num : a)
+		print("{:8d}",num);		//c++ 23
+
+	// 가장 큰 값을 찾아 화면에 출력하라
+	//int max{ *max_element(a,a + 100) };
+	int max{ numeric_limits<int>::min()};
+	for (int num : a)
+		if (num > max) max = num;
+	cout << " "<<max;
+
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 2:17:16
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <format>
+#include <print>
+#include <algorithm>
+#include "save.h"
+using namespace std;
+
+// 문제 - [0,99999] 값을 갖는 int 100개를 만들자.
+// 값이 가장 큰 수를 찾아 화면에 출력하라.
+
+default_random_engine dre;
+uniform_int_distribution uid{ 0,99999 };
+
+int main()
+{
+	int a[100];
+	for (int& num : a)
+		num = uid(dre);
+
+	for (int num : a)
+		print("{:8d}",num);		//c++ 23
+
+	// 가장 큰 값을 찾아 화면에 출력하라
+
+	int maxValue = *max_element(begin(a), end(a));
+	
+	cout << endl << maxValue;
+
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 2:46:56
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <format>
+#include <print>
+#include <array>
+#include <fstream>
+#include "save.h"
+using namespace std;
+
+// 문제 - [0,99999] 값을 갖는 int 100개를 만들자.
+// 이 값을 파일"int천개.txt"에 기록하라.
+
+default_random_engine dre;
+uniform_int_distribution uid{ 0,99999 };
+
+int main()
+{
+	array<int, 1000> a;
+
+	for (int& num : a)
+		num = uid(dre);
+
+	// a에 있는 값을 파일에 기록하라.
+	
+	ofstream out{ "int천개.txt" };	//RAII	
+	
+	for (int num : a)
+		print(out,"{:8}",num);
+	
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 2:49:24
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <format>
+#include <print>
+#include <array>
+#include <fstream>
+#include "save.h"
+using namespace std;
+
+// 문제 - [0,99999] 값을 갖는 int 100개를 만들자.
+// 이 값을 파일"int천개.txt"에 기록하라.
+
+default_random_engine dre;
+uniform_int_distribution uid{ 0,99999 };
+
+int main()
+{
+	array<int, 1000> a;
+
+	for (int& num : a)
+		num = uid(dre);
+
+	// a에 있는 값을 파일에 기록하라.
+	
+	ofstream out{ "int천개.txt" };	//RAII	
+	
+	for (int num : a)
+		print(out,"{} ",num);
+	
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 2:52:15
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <random>
+#include <format>
+#include <print>
+#include <array>
+#include <fstream>
+#include "save.h"
+using namespace std;
+
+// 문제 - [0,99999] 값을 갖는 int 100개를 만들자.
+// 이 값을 파일"int천개.txt"에 기록하라.
+
+default_random_engine dre;
+uniform_int_distribution uid{ 0,99999 };
+
+int main()
+{
+	array<int, 1000> a;
+	for (int& num : a)
+		num = uid(dre);
+	cout<< sizeof(a);
+
+	// a에 있는 값을 파일에 기록하라.
+	
+	ofstream out{ "int천개.txt" };	//RAII	
+	
+	for (int num : a)
+		print(out,"{} ",num);
+	
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 3:08:34
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include "save.h"
+using namespace std;
+
+// 문제 - 파일 "int천개.txt"에는 int값 1000개가 숫자값 그대로 기록되어 있다.
+// 값과 값은 공백으로 떨어져 있다.
+// 이 파일에 있는 모든 값을 화면에 출력하라.
+
+int main()
+{
+	ifstream in("int천개.txt");
+	if (!in)
+		exit(0);
+	int num;
+	while (in >> num)
+		cout << num << "\t";
+	
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 3:09:56
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include "save.h"
+using namespace std;
+
+// 문제 - 파일 "int천개.txt"에는 int값 1000개가 숫자값 그대로 기록되어 있다.
+// 값과 값은 공백으로 떨어져 있다.
+// 이 파일에 있는 모든 값을 화면에 출력하라.
+
+int main()
+{
+	ifstream in("int천개.txt");
+	if (!in)
+		exit(0);
+	int num;
+	int count{};
+	while (in >> num) {
+		cout << num << "\t";
+		++count;
+	}
+	cout << endl;
+	cout << "갯수: " << count;
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 3:13:05
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include "save.h"
+using namespace std;
+
+// 문제 - 파일 "int천개.txt"에는 int값 1000개가 숫자값 그대로 기록되어 있다.
+// 값과 값은 공백으로 떨어져 있다.
+// 가장 큰 값을 찾아 화면에 출력하라
+
+int main()
+{
+	ifstream in("int천개.txt");
+	if (!in)
+		exit(0);
+	int num;
+	int max{ numeric_limits<int>::min() };
+	while (in >> num)
+		if (max < num) max = num;
+
+	cout << endl;
+	cout << "최댓값: " << max;
+	save("FileName.cpp");
+}
+
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-11 월요일 오후 3:18:37
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.11 월		                                        (2주 / 1일)
+// 
+// C++ 복습
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include "save.h"
+using namespace std;
+
+// 문제 - 파일 "int천개.txt"에는 int값 1000개가 숫자값 그대로 기록되어 있다.
+// 값과 값은 공백으로 떨어져 있다.
+// 가장 큰 값을 찾아 화면에 출력하라
+
+int main()
+{
+	ifstream in("int천개.txt");
+	if (!in)
+		exit(0);
+	cout << "최댓값은 " << *max_element(istream_iterator<int>{in}, {});
+	save("FileName.cpp");
+}
+
