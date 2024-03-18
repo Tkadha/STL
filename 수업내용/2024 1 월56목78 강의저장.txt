@@ -1508,3 +1508,550 @@ int main()
 	save("FileName.cpp");
 }
 
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-18 월요일 오후 1:42:07
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.18 월		                                        (3주 / 1일)
+// 
+// 파일 I/O
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <array>
+#include "save.h"
+using namespace std;
+
+// 문제 - "개들" 에는  Dog 100 객체가 기록되었다.
+// binary mode, sizeof(Dog)*100 바이트를 기록하였다.
+// Dog의 멤버는 아래와 같다.
+// num 값이 가장 큰 Dog를 찾아 화면에 출력하라
+
+class Dog {
+	char c;
+	int num;
+public:
+	void show() const {
+		cout << "char - " << c << ", num - " << num << endl;
+	}
+};
+
+int main()
+{
+	array<Dog, 100> dogs;
+	ifstream in{ "개들" ,ios::binary };
+	if (!in) {
+		cout << "파일을 열 수 없습니다." << endl;
+		return 0;
+	}
+	Dog dog;
+	for (int i = 0;i < 100;++i) {
+		in.read((char*)&dog, sizeof(dog));
+		dog.show();
+	}
+	save("FileName.cpp");
+}
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-18 월요일 오후 1:48:15
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.18 월		                                        (3주 / 1일)
+// 
+// 파일 I/O
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <array>
+#include "save.h"
+using namespace std;
+
+// 문제 - "개들" 에는  Dog 100 객체가 기록되었다.
+// binary mode, sizeof(Dog)*100 바이트를 기록하였다.
+// Dog의 멤버는 아래와 같다.
+// num 값이 가장 큰 Dog를 찾아 화면에 출력하라
+
+class Dog {
+	char c;
+	int num;
+public:
+	void show() const {
+		cout << "char - " << c << ", num - " << num << endl;
+	}
+};
+
+int main()
+{
+	ifstream in{ "개들" ,ios::binary };
+	if (!in) {
+		cout << "파일을 열 수 없습니다." << endl;
+		return 0;
+	}
+	array<Dog, 100> dogs;
+	in.read((char*)dogs.data(), sizeof(Dog) * 100);
+	for (const Dog& dog : dogs)
+		dog.show();
+	save("FileName.cpp");
+}
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-18 월요일 오후 1:55:55
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.18 월		                                        (3주 / 1일)
+// 
+// 파일 I/O
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <array>
+#include "save.h"
+using namespace std;
+
+// 문제 - "개들" 에는  Dog 객체가 기록되었다.
+// binary mode, write 함수로 연속된 메모리를 그대로 한번에 기록하였다.
+// Dog의 멤버는 아래와 같다.
+// num 값이 가장 큰 Dog를 찾아 화면에 출력하라
+
+class Dog {
+	char c;
+	int num;
+public:
+	void show() const {
+		cout << "char - " << c << ", num - " << num << endl;
+	}
+	friend istream& operator>>(istream& is, Dog& dog) {
+		is.read((char*)&dog, sizeof(Dog));
+		return is;
+	}
+};
+
+int main()
+{
+	ifstream in{ "개들" ,ios::binary };
+	if (!in) {
+		cout << "파일을 열 수 없습니다." << endl;
+		return 0;
+	}
+	Dog dog;
+	int count{};
+	while (in >> dog)
+		++count;
+	cout << "개수 - " << count << endl;
+
+
+	save("FileName.cpp");
+}
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-18 월요일 오후 2:02:50
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.18 월		                                        (3주 / 1일)
+// 
+// 파일 I/O
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <array>
+#include "save.h"
+using namespace std;
+
+// 문제 - "개들" 에는  Dog 객체 100개가 기록되었다.
+// binary mode, write 함수로 연속된 메모리를 그대로 한번에 기록하였다.
+// Dog의 멤버는 아래와 같다.
+// num 값이 가장 큰 Dog를 찾아 화면에 출력하라
+
+class Dog {
+	char c;
+	int num;
+public:
+	int getNum() const{
+		return num; 
+	}
+
+	void show() const {
+		cout << "char - " << c << ", num - " << num << endl;
+	}
+};
+
+int main()
+{
+	ifstream in{ "개들" ,ios::binary };
+	if (!in) {
+		cout << "파일을 열 수 없습니다." << endl;
+		return 0;
+	}
+	array<Dog, 100> dogs;
+	in.read((char*)dogs.data(), sizeof(Dog) * 100);
+
+	// num 값이 가장 큰 Dog
+	int maxValue{ numeric_limits<int>::min()};
+	for (const Dog& dog : dogs)
+		if (dog.getNum() > maxValue)
+			maxValue = dog.getNum();
+	cout << "최대값은  - " << maxValue << endl;
+
+	save("FileName.cpp");
+}
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-18 월요일 오후 2:05:03
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.18 월		                                        (3주 / 1일)
+// 
+// 파일 I/O
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <array>
+#include "save.h"
+using namespace std;
+
+// 문제 - "개들" 에는  Dog 객체 100개가 기록되었다.
+// binary mode, write 함수로 연속된 메모리를 그대로 한번에 기록하였다.
+// Dog의 멤버는 아래와 같다.
+// num 값이 가장 큰 Dog를 찾아 화면에 출력하라
+
+class Dog {
+	char c;
+	int num;
+public:
+	int getNum() const{
+		return num; 
+	}
+
+	void show() const {
+		cout << "char - " << c << ", num - " << num << endl;
+	}
+};
+
+int main()
+{
+	ifstream in{ "개들" ,ios::binary };
+	if (!in) {
+		cout << "파일을 열 수 없습니다." << endl;
+		return 0;
+	}
+	array<Dog, 100> dogs;
+	in.read((char*)dogs.data(), sizeof(Dog) * 100);
+
+	// num 값이 가장 큰 Dog
+	int maxValue{ numeric_limits<int>::min()};
+	Dog maxdog;
+	for (const Dog& dog : dogs) {
+		if (dog.getNum() > maxValue) {
+			maxValue = dog.getNum();
+			maxdog = dog;
+		}
+	}
+	cout << "num 값이 가장 큰 Dog" << endl;
+	maxdog.show();
+	save("FileName.cpp");
+}
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-18 월요일 오후 2:16:07
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.18 월		                                        (3주 / 1일)
+// 
+// 파일 I/O
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <array>
+#include <algorithm>
+#include "save.h"
+using namespace std;
+
+// 문제 - "개들" 에는  Dog 객체 100개가 기록되었다.
+// binary mode, write 함수로 연속된 메모리를 그대로 한번에 기록하였다.
+// Dog의 멤버는 아래와 같다.
+// num 값이 가장 큰 Dog를 찾아 화면에 출력하라
+
+class Dog {
+	char c;
+	int num;
+public:
+	int getNum() const{
+		return num; 
+	}
+
+	void show() const {
+		cout << "char - " << c << ", num - " << num << endl;
+	}
+};
+
+int main()
+{
+	ifstream in{ "개들" ,ios::binary };
+	if (!in) {
+		cout << "파일을 열 수 없습니다." << endl;
+		return 0;
+	}
+	array<Dog, 100> dogs;
+	in.read((char*)dogs.data(), sizeof(Dog) * 100);
+
+	// num 값이 가장 큰 Dog
+	Dog maxdog = *max_element(dogs.begin(), dogs.end(), [](const Dog& a, const Dog& b) {
+		return a.getNum() < b.getNum();
+		});
+
+	cout << "num 값이 가장 큰 Dog" << endl;
+	maxdog.show();
+	// char - y, num - 9929;
+	save("FileName.cpp");
+}
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-18 월요일 오후 2:17:51
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.18 월		                                        (3주 / 1일)
+// 
+// 파일 I/O
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <array>
+#include <algorithm>
+#include "save.h"
+using namespace std;
+
+// 문제 - "개들" 에는  Dog 객체 100개가 기록되었다.
+// binary mode, write 함수로 연속된 메모리를 그대로 한번에 기록하였다.
+// Dog의 멤버는 아래와 같다.
+// num 값이 가장 큰 Dog를 찾아 화면에 출력하라
+
+class Dog {
+	char c;
+	int num;
+public:
+	int getNum() const{
+		return num; 
+	}
+
+	void show() const {
+		cout << "char - " << c << ", num - " << num << endl;
+	}
+};
+
+int main()
+{
+	ifstream in{ "개들" ,ios::binary };
+	if (!in) {
+		cout << "파일을 열 수 없습니다." << endl;
+		return 0;
+	}
+	array<Dog, 100> dogs;
+	in.read((char*)dogs.data(), sizeof(Dog) * 100);
+
+	// num 값이 가장 큰 Dog
+	auto pos = max_element(dogs.begin(), dogs.end(), [](const Dog& a, const Dog& b) {
+		return a.getNum() < b.getNum();
+		});
+
+	cout << "num 값이 가장 큰 Dog" << endl;
+	pos->show();
+	// char - y, num - 9929;
+	save("FileName.cpp");
+}
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-18 월요일 오후 2:28:03
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.18 월		                                        (3주 / 1일)
+// 
+// 파일 I/O
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <array>
+#include <algorithm>
+#include "save.h"
+using namespace std;
+
+// 문제 - "개들" 에는  Dog 객체 100개가 기록되었다.
+// binary mode, write 함수로 연속된 메모리를 그대로 한번에 기록하였다.
+// Dog의 멤버는 아래와 같다.
+// num 값이 가장 큰 Dog를 찾아 화면에 출력하라
+
+class Dog {
+	char c;
+	int num;
+public:
+	int getNum() const{
+		return num; 
+	}
+
+	void show() const {
+		cout << "char - " << c << ", num - " << num << endl;
+	}
+};
+
+int main()
+{
+	ifstream in{ "개들" ,ios::binary };
+	if (!in) {
+		cout << "파일을 열 수 없습니다." << endl;
+		return 0;
+	}
+	array<Dog, 100> dogs;
+	in.read((char*)dogs.data(), sizeof(Dog) * 100);
+
+	// [문제] - num 값이 음수인 Dog의 개수를 출력하라
+	int cnt{};
+	for (const Dog& dog : dogs) {
+		if (dog.getNum() < 0)
+			++cnt;
+	}
+
+	cout << "num 값이 음수인 Dog의 개수 - " << cnt << endl;
+
+	// num 값이 가장 큰 Dog
+	auto pos = max_element(dogs.begin(), dogs.end(), [](const Dog& a, const Dog& b) {
+		return a.getNum() < b.getNum();
+		});
+
+	cout << "num 값이 가장 큰 Dog" << endl;
+	pos->show();
+	// char - y, num - 9929;
+	save("FileName.cpp");
+}
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-18 월요일 오후 2:37:20
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.18 월		                                        (3주 / 1일)
+// 
+// 파일 I/O
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <fstream>
+#include <array>
+#include <algorithm>
+#include "save.h"
+using namespace std;
+
+// 문제 - "개들" 에는  Dog 객체 100개가 기록되었다.
+// binary mode, write 함수로 연속된 메모리를 그대로 한번에 기록하였다.
+// Dog의 멤버는 아래와 같다.
+// num 값이 가장 큰 Dog를 찾아 화면에 출력하라
+
+class Dog {
+	char c;
+	int num;
+public:
+	int getNum() const{
+		return num; 
+	}
+
+	void show() const {
+		cout << "char - " << c << ", num - " << num << endl;
+	}
+};
+
+int main()
+{
+	ifstream in{ "개들" ,ios::binary };
+	if (!in) {
+		cout << "파일을 열 수 없습니다." << endl;
+		return 0;
+	}
+	array<Dog, 100> dogs;
+	in.read((char*)dogs.data(), sizeof(Dog) * 100);
+
+	// [문제] - num 값이 음수인 Dog의 개수를 출력하라
+	int cnt = count_if(dogs.begin(), dogs.end(), [](const Dog& dog) {
+		return 0 > dog.getNum();
+		});
+
+	cout << "num 값이 음수인 Dog의 개수 - " << cnt << endl;
+
+	
+	
+	save("FileName.cpp");
+}
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-18 월요일 오후 3:03:26
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.18 월		                                        (3주 / 1일)
+// 
+// 실행 파일의 메모리 영역 - STACK, DATA, CODE, free store(heap)
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <array>
+#include <string>
+#include "save.h"
+using namespace std;
+
+char gc;	// DATA
+int gnum;
+
+void f();	// CODE
+
+int main()
+{
+	array<int, 10> a;		// int 10개의 주소를 출력하라
+	cout << "STACK - array" << endl;
+	for (int& num : a)
+		cout << addressof(num) << endl;
+	cout << endl;
+	string s{ "안녕하세요. 메모리 영역 확인중 입니다." };
+
+	cout <<"STACK - string, " << addressof(s) << endl;
+
+	cout << endl;
+	cout << "DATA segment" << endl;
+	//cout << "전역 char, " << addressof(gc) << endl;	// 화면에 왜 안나오는가
+	cout << "전역 int, " << addressof(gnum) << endl;
+	
+	cout << endl;
+	cout << "CODE - 함수가 기록되어 있는 곳" << endl;
+	cout << "main 함수, " << addressof(main) << endl;
+	cout << "save 함수, " << addressof(save) << endl;
+	cout << "f 함수, " << addressof(f) << endl;
+
+
+	double* p = new double[10];
+	cout << endl;
+	cout << "free store - 자유 메모리 공간" << endl;
+	for (int i = 0;i < 10;++i)
+		cout << addressof(p[i]) << endl;
+
+	delete(p);
+	save("FileName.cpp");
+}
+
+void f()
+{
+	cout << "함수다." << endl;
+}
