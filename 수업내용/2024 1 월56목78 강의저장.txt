@@ -2055,3 +2055,353 @@ void f()
 {
 	cout << "함수다." << endl;
 }
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-25 월요일 오후 1:37:14
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.25 월		                                        (4주 / 1일)
+// 
+// 
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <numeric>
+#include "save.h"
+using namespace std;
+
+// [문제] 사용자 입력 int num값을 받아 free store에 int[num] 메모리를
+// 확보하라.
+// 확보한 메모리의 내용을 1부터 시작하여 1씩 증가하는 int 값으로 채워라.
+// 메모리의 값을 합하여 출력하라
+
+// free store를 쓰는 이유? compile-time 에 크기를 알 수 없는 경우
+
+int main()
+{
+	//while (true) {
+		int num;
+		cin >> num;
+		int* p = new int[num];
+		iota(p, p + num, 1);
+		long sum = accumulate(p, p + num, 0);
+		cout << "합계: " << sum << endl;
+	//}
+
+
+	save("FileName.cpp");
+}
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-25 월요일 오후 1:59:19
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.25 월		                                        (4주 / 1일)
+// 
+// 
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+class Dog {
+public:
+	Dog() { cout << "생성" << endl; };
+	~Dog() { cout << "삭제" << endl; };
+};
+
+
+int main()
+{
+	Dog* p;
+	p = new Dog;
+	delete p;
+	save("FileName.cpp");
+}
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-25 월요일 오후 1:59:37
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.25 월		                                        (4주 / 1일)
+// 
+// 
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+class Dog {
+public:
+	Dog() { cout << "생성" << endl; };
+	~Dog() { cout << "삭제" << endl; };
+};
+
+
+int main()
+{
+	Dog dog;
+	Dog* p;
+	p = new Dog;
+	delete p;
+	save("FileName.cpp");
+}
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-25 월요일 오후 2:11:43
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.25 월		                                        (4주 / 1일)
+// 
+// 
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+class Dog {
+public:
+	Dog() { cout << "생성" << endl; };
+	~Dog() { cout << "삭제" << endl; };
+};
+
+
+class Smart_ptr
+{
+public:
+	Smart_ptr(Dog* p) :p{ p } {}	// RAII	- idiom
+	~Smart_ptr() {
+		delete p;
+	}
+
+private:
+	Dog* p;
+};
+
+
+int main()
+{
+	Smart_ptr p{new Dog};
+
+	
+
+	save("FileName.cpp");
+}
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-25 월요일 오후 2:38:12
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.25 월		                                        (4주 / 1일)
+// 
+// free store에 할당된 객체
+// 
+// 앞으로 C++에서 사용하지 말 것
+// raw        wrapping
+// char*   -> string
+// T [N]   -> array<T,N>
+// T*      -> unique_ptr, shared_ptr
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+class Dog {
+public:
+	Dog() { cout << "생성" << endl; };
+	~Dog() { cout << "소멸" << endl; };
+};
+
+
+class Smart_ptr
+{
+public:
+	Smart_ptr(Dog* p) :p{ p } {}	// RAII	- idiom
+	~Smart_ptr() {
+		delete p;
+	}
+
+private:
+	Dog* p;
+};
+
+void f()
+{
+	cout << "f() 시작" << endl;
+	Dog* p= new Dog;
+	
+
+	delete p;
+	cout << "f() 끝" << endl;
+
+}
+
+int main()
+{
+	cout << "main() 시작" << endl;
+
+	f();	// 여기서 Dog를 만들고 해제
+
+	save("FileName.cpp");
+
+	cout << "main() 끝" << endl;
+}
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-25 월요일 오후 2:55:51
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.25 월		                                        (4주 / 1일)
+// 
+// free store에 할당된 객체
+// 
+// 앞으로 C++에서 사용하지 말 것
+// raw        wrapping
+// char*   -> string
+// T [N]   -> array<T,N>
+// T*      -> unique_ptr, shared_ptr
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include "save.h"
+using namespace std;
+
+class Dog {
+public:
+	Dog() { cout << "생성" << endl; };
+	~Dog() { cout << "소멸" << endl; };
+};
+
+
+class Smart_ptr
+{
+public:
+	Smart_ptr(Dog* p) :p{ p } {}	// RAII	- idiom
+	~Smart_ptr() {
+		delete p;
+	}
+
+private:
+	Dog* p;
+};
+
+void f()
+{
+	cout << "f() 시작" << endl;
+	Smart_ptr p{ new Dog };// 예외처리 되어 탈출하면서 지역변수인 p는 stack에 있는 데이터라서 없애는 것을 보장함.
+	throw 1234;
+	
+
+	cout << "f() 끝" << endl;
+
+}
+
+int main()
+{
+	cout << "main() 시작" << endl;
+	try{
+	f();	// 여기서 Dog를 만들고 해제
+	}
+	catch (...) {
+
+	}
+	save("FileName.cpp");
+
+	cout << "main() 끝" << endl;
+}
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-25 월요일 오후 3:07:29
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.25 월		                                        (4주 / 1일)
+// 
+// free store에 할당된 객체
+// 
+// 앞으로 C++에서 사용하지 말 것
+// raw        wrapping
+// char*   -> string
+// T [N]   -> array<T,N>
+// T*      -> unique_ptr, shared_ptr
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <memory>
+#include "save.h"
+using namespace std;
+
+class Dog {
+public:
+	Dog() { cout << "생성" << endl; };
+	~Dog() { cout << "소멸" << endl; };
+};
+
+
+
+int main()
+{
+	unique_ptr<Dog[]> p = make_unique<Dog[]>(10);
+
+	save("FileName.cpp");
+}
+
+
+====================================================
+FileName.cpp, 저장 시간: 2024-03-25 월요일 오후 3:16:59
+====================================================
+
+//---------------------------------------------------------------------
+// 2024.3.25 월		                                        (4주 / 1일)
+// 
+// free store에 할당된 객체
+// 
+// 앞으로 C++에서 사용하지 말 것
+// raw        wrapping
+// char*   -> string
+// T [N]   -> array<T,N>
+// T*      -> unique_ptr, shared_ptr
+//---------------------------------------------------------------------
+
+#include <iostream>
+#include <string_view>
+#include <fstream>
+#include <vector>
+#include "save.h"
+using namespace std;
+
+// [문제] "FileName.cpp"의 모든 영문자를 대문자로 바꿔 "FileName대문자.txt"에 저장하시오.
+
+int main()
+{
+	string_view name{ "FileName.cpp" };
+	ifstream in{ name.data() };
+	if (!in) {
+		std::cout << "파일을 열지 못함" << '\n';
+		exit(-1);
+	}
+	std::ofstream out("FileNam대문자.txt");
+	
+	char c;
+	in >> noskipws;
+	while (in >> c) {
+		out << static_cast<char>(toupper(c));
+	}
+	save("FileName.cpp");
+}
